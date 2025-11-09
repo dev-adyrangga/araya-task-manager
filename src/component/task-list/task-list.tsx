@@ -81,9 +81,22 @@ const TaskList = ({ taskData = [], authorId }: ITaskList) => {
     }
   }
 
+  const onFilterHandler = (value: string) => {
+    const filtered = value
+      ? taskData.filter(
+          (task) =>
+            task?.title?.includes?.(value) ||
+            task?.status?.includes?.(value) ||
+            task?.description?.includes?.(value)
+        )
+      : taskData
+
+    setTaskList(filtered)
+  }
+
   return (
     <div className="pt-6">
-      <FilterFormField />
+      <FilterFormField onFilterSearch={onFilterHandler} />
       <div className="flex flex-row justify-between pt-6">
         <h2 className="text-xl font-bold">Task List</h2>
         <button

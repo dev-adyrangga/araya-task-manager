@@ -2,16 +2,17 @@
 
 import { debounce } from '@/src/utils/debounce'
 import TextFormField from './text-form-field'
-import { useRouter } from 'next/navigation'
+import { useMemo } from 'react'
 
-const FilterFormField = () => {
-  const router = useRouter()
+type IFilterFormField = {
+  onFilterSearch: (value: string) => void
+}
 
-  const handleSearch = (value: string) => {
-    router.push(`?query=${value}`)
-  }
-
-  const debouncedSearch = debounce(handleSearch, 400)
+const FilterFormField = ({ onFilterSearch }: IFilterFormField) => {
+  const debouncedSearch = useMemo(
+    () => debounce(onFilterSearch, 400),
+    [onFilterSearch]
+  )
 
   return (
     <TextFormField
