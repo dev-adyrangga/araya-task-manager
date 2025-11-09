@@ -95,7 +95,7 @@ const TaskList = ({ taskData = [], authorId }: ITaskList) => {
   }
 
   return (
-    <div className="pt-6">
+    <div className="pt-6" data-testid="task-list">
       <FilterFormField onFilterSearch={onFilterHandler} />
       <div className="flex flex-row justify-between pt-6">
         <h2 className="text-xl font-bold">Task List</h2>
