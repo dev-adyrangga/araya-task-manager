@@ -35,7 +35,6 @@ export const signUpAction = async (_: unknown, formData: FormData) => {
 
   if (result.ok) {
     const data = (await result.json()).data as User
-    console.log('araya::sign-up::', data)
 
     if (!data?.id) {
       return {
